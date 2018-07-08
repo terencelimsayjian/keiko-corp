@@ -196,7 +196,7 @@ header .social li:first-child{
 	position: relative;
 	width: 100%;
 	height: 560px;
-	background: url(../img/461aa3fa15d4f48fdda175e181d3e603-hero.jpg) no-repeat fixed center center;
+	background: url(../img/7015d54e512f7527ee5eb0e170c0c5b0-hero.jpg) no-repeat fixed center center;
 	background-size: cover;
 }
 
@@ -776,11 +776,6 @@ footer .copyright a{
 
 
 
-
-
-
-
-
 /*		Responsive CSS 		*/
 
 @media (max-width: 360px) {
@@ -844,11 +839,12 @@ footer .copyright a{
 	}
 
 
-
-
-
-
+	
 	/*		Hero section 		*/
+	.hero{
+		background: url(../img/a9b4c97c3dae5863b8709db713c831f9-hero_small.jpg) no-repeat fixed center center;
+	}
+	
 	.hero .caption{
 		margin-left: 0;
 	}
