@@ -1,12 +1,41 @@
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 module.exports = {
-    entry: './js/index.js',
+    entry: './src/app.js',
     output: {
       path: __dirname + '/dist',
       filename: 'bundle.js'
     },
     externals: {
-        // require("jquery") is external and available
-        //  on the global var jQuery
-        "jquery": "jQuery"
-      }
+      "jquery": "jQuery"
+    }, 
+    module:{
+      rules:[
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                // you can specify a publicPath here
+                // by default it use publicPath in webpackOptions.output
+                publicPath: '../'
+              }
+            },
+            "css-loader"
+          ]
+        }
+      ]
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+          hash: true,
+          template: "./src/index.html",
+          filename: './index.html'
+      }),
+      new MiniCssExtractPlugin({
+        filename: "bundle.css",
+      })
+    ]
   }
