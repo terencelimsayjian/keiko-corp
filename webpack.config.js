@@ -1,11 +1,12 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/app.js',
     output: {
       path: __dirname + '/dist',
-      filename: 'bundle.js'
+      filename: 'js/bundle.js'
     },
     externals: {
       "jquery": "jQuery"
@@ -18,13 +19,21 @@ module.exports = {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                // you can specify a publicPath here
-                // by default it use publicPath in webpackOptions.output
                 publicPath: '../'
               }
             },
             "css-loader"
           ]
+        },
+        {
+          test: /\.(png|jp(e*)g|svg|gif|eot|ttf|woff|woff2)$/,  
+          use: [{
+            loader: 'url-loader',
+            options: { 
+                limit: 8000,
+                name: 'img/[hash]-[name].[ext]',
+            } 
+          }]
         }
       ]
     },
@@ -35,7 +44,10 @@ module.exports = {
           filename: './index.html'
       }),
       new MiniCssExtractPlugin({
-        filename: "bundle.css",
-      })
+        filename: "css/bundle.css",
+      }),
+      new CopyWebpackPlugin([
+        { from: 'src/static_img', to: 'static_img' },
+      ])
     ]
   }

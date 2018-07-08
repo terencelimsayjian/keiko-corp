@@ -1,4 +1,6 @@
 require("./css/main.css")
+require("bootstrap/dist/css/bootstrap.min.css");
+require("./css/animate.css");
 
 require("./js/jquery.js");
 require("./js/ajaxchimp.js");
